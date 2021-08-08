@@ -89,8 +89,6 @@ class GFAlertViewController: UIViewController {
         ])
     }
     
-
-    
     private func configureActionButton() {
         containerView.addSubview(actionButton)
         actionButton.setTitle(buttonTitle ?? "Accept", for: .normal)

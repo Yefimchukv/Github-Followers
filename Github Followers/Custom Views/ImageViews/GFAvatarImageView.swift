@@ -9,8 +9,11 @@ import UIKit
 
 class GFAvatarImageView: UIImageView {
     
+    let cache = NetworkManager.shared.cache
+    
     let placeholderImage = UIImage(named: "avatar-placeholder")
-
+    var profileImage = UIImage(named: "avatar-placeholder")
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
@@ -20,10 +23,21 @@ class GFAvatarImageView: UIImageView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func setImage(from urlString: String) {
+        NetworkManager.shared.downloadImage(from: urlString) { [weak self] image in
+            guard let self = self else { return }
+            self.image = image
+        }
+    }
+    
+    
+    // MARK: - Private functions
     private func configure() {
         layer.cornerRadius = 10
         clipsToBounds = true
         image = placeholderImage
         translatesAutoresizingMaskIntoConstraints = false
     }
+    
+    
 }

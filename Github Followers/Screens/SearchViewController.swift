@@ -95,7 +95,6 @@ class SearchViewController: UIViewController {
         ])
     }
     
-    
     private func configureCallToActionButton() {
         view.addSubview(callToActionButton)
         
